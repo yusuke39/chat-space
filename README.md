@@ -33,12 +33,12 @@ Things you may want to cover:
 
 ### Association
 - has_many :members
-- has_many :massages
+- has_many :messages
 - has_many :groups, through: :members
 
 
 
-## massagesテーブル
+## messagesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -50,7 +50,7 @@ Things you may want to cover:
 
 ### Association
 - belongs_to :user
-- belongs_to :user
+- belongs_to :group
 
 
 
@@ -63,7 +63,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :members
-- has_many :massages
+- has_many :messages
 - has_many :users, through: :members
 
 
