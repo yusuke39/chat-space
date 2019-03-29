@@ -32,7 +32,7 @@ Things you may want to cover:
 |password|string|null: false|
 
 ### Association
-- has_many :groups
+- has_many :members
 - has_many :massages
 - has_many :groups, through: :members
 
@@ -62,6 +62,7 @@ Things you may want to cover:
 |name|string|null: false|
 
 ### Association
+- has_many :members
 - has_many :massages
 - has_many :users, through: :members
 
