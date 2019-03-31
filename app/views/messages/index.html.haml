@@ -1,6 +1,4 @@
 .flesh-box
-  .notice
-    グループを作成しました。
 .wrapper
   .chat-side
     .side-header
@@ -42,7 +40,6 @@
           %input#message_content.input-box__text{:name => "message[content]", :placeholder => "type a message", :type => "text"}
           %label.input-box__image{:fore => "message_image"}
             %i.fa.fa-picture-o
-            %input#message_image.input-box__image__file{:name => "message[image]", :type => "file"}/
         %input.submit{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}/
 
 
