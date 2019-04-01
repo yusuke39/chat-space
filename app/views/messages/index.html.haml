@@ -7,14 +7,14 @@
         %p.side_header__box__user__name hirano
         %ul.side-header__box__menu
           %li.side-header__box__menu__edit-user
-            %a{:href => "/groups/new"}
+            = link_to '/groups/new' do
               %i.fa.fa-pencil-square-o
           %li.side-header_box_menu_new-group
-            %a{:href => "/users/118/edit"}
+            = link_to '/users/118/edit' do
               %i.fa.fa-cog
 
     .groups
-      %a{:href => "/groupes/160/messages"}
+      = link_to '/groupes/160/messages' do
         .group
           %p.group__group-name hirano
           %p.gropu__latest-message aaaaaaaaa
@@ -28,7 +28,7 @@
             Member&nbsp;:&nbsp;
             %li.main-header__left-box__member-list__member
               hirano
-      %a{:href => "/groups/160/edit"}
+      =link_to '/groups/160/edit' do
         .main-header__edit-btn Edit
 
     .messages
