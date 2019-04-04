@@ -1,17 +1,18 @@
 .flesh-box
-  .alert グループを作成しました。
+  .alert
 .wrapper
   .chat-side
     .side-header
       .side-header__box
-        %p.side_header__box__user__name hirano
+        %p.side_header__box__user__name
+          = current_user.name
         %ul.side-header__box__menu
           %li.side-header__box__menu__edit-user
-            = link_to '/groups/new' do
+            = link_to new_group_path do
               %i.fa.fa-pencil-square-o
           %li.side-header_box_menu_new-group
-            = link_to '/users/118/edit' do
-              %i.fa.fa-cog
+            = link_to edit_user_path(current_user) do
+              = fa_icon 'cog', class: 'icon'
 
     .groups
       = link_to '/groupes/160/messages' do
