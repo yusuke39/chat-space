@@ -146,6 +146,33 @@ a{
   overflow: scroll;
 }
 
+.message{
+  padding-bottom: 40px;
+}
+
+.upper-message{
+  display: flex;
+  margin-bottom: 10px;
+
+  &__user-name{
+    color: #434a54;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+.upper-message__date{
+  color: #999999;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.lower-message__content{
+  color: #434a54;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
 .new_message{
   display: flex;
 }
@@ -193,3 +220,5 @@ a{
   color: white;
   cursor: pointer;
 }
+
+
