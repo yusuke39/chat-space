@@ -1,23 +1,27 @@
 .flesh-box
-  .alert グループを作成しました。
+  .alert
 .wrapper
   .chat-side
     .side-header
       .side-header__box
-        %p.side_header__box__user__name hirano
+        %p.side_header__box__user__name
+          = current_user.name
         %ul.side-header__box__menu
           %li.side-header__box__menu__edit-user
-            = link_to '/groups/new' do
+            = link_to new_group_path do
               %i.fa.fa-pencil-square-o
           %li.side-header_box_menu_new-group
-            = link_to '/users/118/edit' do
-              %i.fa.fa-cog
+            = link_to edit_user_path(current_user) do
+              = fa_icon 'cog', class: 'icon'
 
     .groups
-      = link_to '/groupes/160/messages' do
-        .group
-          %p.group__group-name hirano
-          %p.gropu__latest-message aaaaaaaaa
+      .group
+      - current_user.groups.each do |group|
+        = link_to group_messages_path(group) do
+          .group-name
+            = group.name
+          .gropu__latest-message
+            = group.show_last_message
 
   .chat-main
     .main-header
@@ -32,14 +36,13 @@
         .main-header__edit-btn Edit
 
     .messages
+      =render @messages
 
     .form
-      %form#new_message.new_message{"accept-charset" => "UTF-8", :action => "/groups/160/messages", :enctype => "multipart/form-data", :method => "post"}
-        %input{"name" => "UTF-8", :type => "hidden", :value => "√"}/
-        %input{:type => "hidden", "name" => "authenticity_token", :value => "ZoMiNnB93J9+pArpl7qyMRUcBtMO6R618kdaui2gkgZNUzzSqKWCi+0H8VenObMYg3zepHcBT3l582A4Kzf5DA=="}/
+      = form_for [@group, @message] do |f|
         .input-box
-          %input#message_content.input-box__text{:name => "message[content]", :placeholder => "type a message", :type => "text"}
-          %label.input-box__image{:fore => "message_image"}
-            %i.fa.fa-picture-o
-            %input#message_image.input-box__image__file{:name => "message[image]", :type => "file"}
-        %input.submit{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}/
+          = f.text_field :body, class: 'input-box__text', placeholder: 'type a message'
+          = f.label :image, class: 'input-box__text' do
+            = fa_icon 'picture-o', class: 'input-box__image'
+            = f.file_field :image, class: 'input-box__image__file'
+        = f.submit 'Send', class: 'new-message__submit-btn'

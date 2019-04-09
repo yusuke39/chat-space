@@ -78,24 +78,26 @@ ol ul{
     background-color: $groups_color;
     padding: 20px 20px 0;
     overflow: scroll;
+  }
 
-    a{
+a{
       color: white;
+    }
 
-      .group{
+
+.group{
         margin-bottom: 40px;
+    }
 
-        &__group-name {
+.group-name {
           font-size: 15px;
           margin-bottom: 5px;
+          margin-top: 30px;
+      }
 
-          .gropu__latest-message {
+.gropu__latest-message {
             font-size: 11px;
         }
-      }
-    }
-  }
-}
 
 
 .chat-main {
@@ -144,6 +146,33 @@ ol ul{
   overflow: scroll;
 }
 
+.message{
+  padding-bottom: 40px;
+}
+
+.upper-message{
+  display: flex;
+  margin-bottom: 10px;
+
+  &__user-name{
+    color: #434a54;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+.upper-message__date{
+  color: #999999;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.lower-message__content{
+  color: #434a54;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
 .new_message{
   display: flex;
 }
@@ -152,36 +181,37 @@ ol ul{
   height: 90px;
   padding: 20px 40px;
   background-color: $form_color;
-
-    .input-box{
-      position: relative;
-      width: 100%;
-
-      &__text{
-        height: 50px;
-        width: 100%;
-        padding: 0 40px 0 10px;
-        color: #434a54;
-        border-style: none;
-    }
-  }
 }
+
+.input-box{
+  position: relative;
+  width: 100%;
+}
+
+.input-box__text{
+    height: 50px;
+    width: 100%;
+    padding: 0 40px 0 10px;
+    color: #434a54;
+    border-style: none;
+  }
 
 
 .input-box__image{
   font-size: 1.3rem;
   position: absolute;
-  top: 10px;
+  top: 15px;
   right: 10px;
   cursor: pointer;
 }
+
 
 .input-box__image__file{
   display: none;
 }
 
 
-.submit{
+.new-message__submit-btn{
   width: 100px;
   height: 50px;
   padding: 0 30px;
@@ -190,3 +220,5 @@ ol ul{
   color: white;
   cursor: pointer;
 }
+
+
