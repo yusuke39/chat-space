@@ -1,51 +1,51 @@
-$(function(){
-  function buildHTML(message){
-    var imageBox = "";
-    if(message.image){
-      imageBox = `${message.image}`
-    }else{
-      imageBox = "";
+  $(function(){
+    function buildHTML(message){
+      var imageBox = "";
+      if(message.image){
+        imageBox = `${message.image}`
+      }else{
+        imageBox = "";
+      }
+      var html =`<div class="message">
+                  <div class="upper-message">
+                    <div class="upper-message__user-name">
+                      ${message.name}
+                    </div>
+                    <div class="upper-message__date">
+                      ${message.created_at}
+                    </div>
+                  </div>
+                  <div class="lower-meesage">
+                    <p class="lower-message__content">
+                      ${message.text}
+                  <image class="lower-message__image" src="${imageBox}">
+                  </div>
+                </div>`       
+      return html;         
     }
-    var html =`<div class="message">
-                <div class="upper-message">
-                  <div class="upper-message__user-name">
-                    ${message.name}
-                  </div>
-                  <div class="upper-message__date">
-                    ${message.created_at}
-                  </div>
-                </div>
-                <div class="lower-meesage">
-                  <p class="lower-message__content">
-                    ${message.text}
-                 <image class="lower-message__image" src="${imageBox}">
-                </div>
-              </div>`       
-    return html;         
-  }
-  $('#new_message').on('submit', function(e){
-    e.preventDefault();
-    var formData = new FormData(this);
-    var url = location.href
-    $.ajax({
-      url: url,
-      type: "post",
-      data: formData,
-      dataType: 'json',
-      processData: false,
-      contentType: false
+    $('#new_message').on('submit', function(e){
+      e.preventDefault();
+      var formData = new FormData(this);
+      var url = location.href
+      $.ajax({
+        url: url,
+        type: "post",
+        data: formData,
+        dataType: 'json',
+        processData: false,
+        contentType: false
+      })
+      .done(function(json){
+        var html = buildHTML(json)
+        $('.messages').append(html)
+        $('.messages').animate({scrollTop:$('.messages')[0].scrollHeight}, 'fast')
+      })
+      .fail(function(){
+        alert('error');
+      })
+      .always(function(){
+        $('.new_message')[0].reset();
+        $('.new-message__submit-btn').prop('disabled', false)
+      })
     })
-    .done(function(data){
-      var html = buildHTML(data)
-      $('.messages').append(html)
-      $('.messages').animate({scrollTop:$('.messages')[0].scrollHeight}, 'fast')
-    })
-    .fail(function(){
-      alert('error');
-    })
-    .always(function(data){
-      $('.new-message__submit-btn').prop('disabled', false)
-      $('.input-box__text').val('')
-    })
-  })
-});
+  });
