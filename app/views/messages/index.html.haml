@@ -39,7 +39,7 @@
       =render @messages
 
     .form
-      = form_for [@group, @message] do |f|
+      = form_for [@group, @message], html:{class: "new_message"} do |f|
         .input-box
           = f.text_field :body, class: 'input-box__text', placeholder: 'type a message'
           = f.label :image, class: 'input-box__text' do
