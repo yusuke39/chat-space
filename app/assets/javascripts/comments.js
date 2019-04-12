@@ -35,8 +35,8 @@
         processData: false,
         contentType: false
       })
-      .done(function(json){
-        var html = buildHTML(json)
+      .done(function(content){
+        var html = buildHTML(content)
         $('.messages').append(html)
         $('.messages').animate({scrollTop:$('.messages')[0].scrollHeight}, 'fast')
       })
