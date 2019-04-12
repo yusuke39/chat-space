@@ -2,26 +2,27 @@
     function buildHTML(message){
       var imageBox = "";
       if(message.image){
-        imageBox = `${message.image}`
+        imageBox = `<image class="lower-message__image" src=${message.image}>`
       }else{
         imageBox = "";
       }
       var html =`<div class="message">
-                  <div class="upper-message">
-                    <div class="upper-message__user-name">
-                      ${message.name}
-                    </div>
-                    <div class="upper-message__date">
-                      ${message.created_at}
-                    </div>
+                <div class="upper-message">
+                  <div class="upper-message__user-name">
+                    ${message.name}
                   </div>
-                  <div class="lower-meesage">
-                    <p class="lower-message__content">
-                      ${message.text}
-                  <image class="lower-message__image" src="${imageBox}">
+                  <div class="upper-message__date">
+                    ${message.created_at}
                   </div>
-                </div>`       
-      return html;         
+                </div>
+                <div class="lower-meesage">
+                  <p class="lower-message__content">
+                    ${message.text}
+                  </p>
+                 ${imageBox}
+                </div>
+              </div>`       
+               return html;
     }
     $('#new_message').on('submit', function(e){
       e.preventDefault();
