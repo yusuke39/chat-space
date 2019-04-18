@@ -6,7 +6,7 @@
       }else{
         imageBox = "";
       }
-      var html =`<div class="message">
+      var html =`<div class="message" id="message-id" data-id="${message.id}">
                 <div class="upper-message">
                   <div class="upper-message__user-name">
                     ${message.name}
@@ -22,7 +22,7 @@
                  ${imageBox}
                 </div>
               </div>`       
-               return html;
+               return html; 
     }
     $('#new_message').on('submit', function(e){
       e.preventDefault();
@@ -50,8 +50,10 @@
       })
     })
 
+    
   function reloadMessages(){
-   var last_message_id = $(".message:last-child").data("id");  
+   var last_message_id = $(".message:last-child").data("id");
+  //  console.log(last_message_id);
   $.ajax({
     url: 'api/messages',  
     type: 'get',
@@ -59,6 +61,7 @@
     data: {id: last_message_id}
   })
   .done(function(message){
+    // console.log(message)
     var insertHTML = '';
     message.forEach(function(message){
       var html = buildHTML(message);
@@ -66,10 +69,10 @@
     });
   $('.messages').append(insertHTML);
   $('.messages').animate({scrollTop:$('.messages')[0].scrollHeight}, 'fast');
-})
-.fail(function(){
-  alert('erroe')
-  });
-}
-  setInterval(reloadMessages, 5000);
+  })
+  .fail(function(){
+    alert('error')
+    }); 
+  }
+    setInterval(reloadMessages, 5000);
 });
