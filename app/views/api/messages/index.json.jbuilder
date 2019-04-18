@@ -1,5 +1,4 @@
-# if @messages.present?
-  json.array! @messages do |message|
+json.array! @messages do |message|
     json.text message.body
     json.image message.image.url
     json.name message.user.name
