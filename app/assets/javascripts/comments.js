@@ -6,7 +6,7 @@
       }else{
         imageBox = "";
       }
-      var html =`<div class="message">
+      var html =`<div class="message" id="message-id" data-id="${message.id}">
                 <div class="upper-message">
                   <div class="upper-message__user-name">
                     ${message.name}
@@ -22,7 +22,7 @@
                  ${imageBox}
                 </div>
               </div>`       
-               return html;
+               return html; 
     }
     $('#new_message').on('submit', function(e){
       e.preventDefault();
@@ -36,17 +36,41 @@
         processData: false,
         contentType: false
       })
-      .done(function(content){
+        .done(function(content){
         var html = buildHTML(content)
         $('.messages').append(html)
         $('.messages').animate({scrollTop:$('.messages')[0].scrollHeight}, 'fast')
       })
-      .fail(function(){
+        .fail(function(){
         alert('error');
       })
-      .always(function(){
+        .always(function(){
         $('.new_message')[0].reset();
         $('.new-message__submit-btn').prop('disabled', false)
       })
     })
-  });
+
+    
+  function reloadMessages(){
+   var last_message_id = $(".message:last-child").data("id");
+  $.ajax({
+    url: 'api/messages',  
+    type: 'get',
+    dataType: 'json',
+    data: {id: last_message_id}
+  })
+  .done(function(message){
+    var insertHTML = '';
+    message.forEach(function(message){
+      var html = buildHTML(message);
+      insertHTML += html
+    });
+  $('.messages').append(insertHTML);
+  $('.messages').animate({scrollTop:$('.messages')[0].scrollHeight}, 'fast');
+  })
+  .fail(function(){
+    alert('error')
+    }); 
+  }
+    setInterval(reloadMessages, 5000);
+});

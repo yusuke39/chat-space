@@ -1,10 +1,10 @@
-.message
+.message#message-id{data: {id: "#{message.id}"}}
   .upper-message
     .upper-message__user-name
       = message.user.name
     .upper-message__date
       = message.created_at.strftime("%Y/%m/%d %H:%M")
-  .lower-meesage
+  .lower-meesage#message
     - if message.body.present?
       %p.lower-message__content
         = message.body
