@@ -1,6 +1,10 @@
 class Api::MessagesController < ApplicationController
+  before_action :set_group_id
   def index
-    @group =Group.find(params[:group_id])
     @messages = @group.messages.where('id > ?', params[:id])
+  end
+
+  def set_group_id
+    @group =Group.find(params[:group_id])
   end
 end
