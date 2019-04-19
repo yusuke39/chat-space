@@ -36,15 +36,15 @@
         processData: false,
         contentType: false
       })
-      .done(function(content){
+        .done(function(content){
         var html = buildHTML(content)
         $('.messages').append(html)
         $('.messages').animate({scrollTop:$('.messages')[0].scrollHeight}, 'fast')
       })
-      .fail(function(){
+        .fail(function(){
         alert('error');
       })
-      .always(function(){
+        .always(function(){
         $('.new_message')[0].reset();
         $('.new-message__submit-btn').prop('disabled', false)
       })
